@@ -5,7 +5,9 @@ var topics = ["happy", "yas queen", "enthusiastic", "yes", "dog"]
 //render buttons 
 
 function renderButtons() {
-      
+    
+    $("#buttonsHere").empty();
+    
     for (var i = 0; i < topics.length; i++) {
 
         var a = $("<button>");
@@ -20,9 +22,9 @@ function renderButtons() {
     }
 };
 
-renderButtons();
 
-$("button").on("click", function() {
+
+function displayGifs() {
 
     var theme = $(this).attr("data-name")
 
@@ -32,34 +34,67 @@ $("button").on("click", function() {
         url: queryURL,
         method: "GET",
     }).then(function(response) {
-        console.log(queryURL);
-
         console.log(response);
-        // storing the data from the AJAX request in the results variable
+        
         var results = response.data;
-
         // Looping through each result item
         for (var i = 0; i < results.length; i++) {
 
           // Creating and storing a div tag
           var themeDiv = $("<div>");
 
-          // Creating a paragraph tag with the result item's rating
-          var p = $("<p>").text("Rating: " + results[i].Rating);
+            //creating and displaying the paragraph with the rating
+          var p = $("<p>").text("Rating: " + results[i].rating);
 
           // Creating and storing an image tag
-          var themeImage = $("<img>");
-          // Setting the src attribute of the image to a property pulled off the result item
-          themeImage.attr("src", results[i].images.fixed_height.url);
+        var themeImageStill = results[i].images.fixed_height_still.url;
+        var themeImageAnimated = results[i].images.fixed_height.url;
+
+        var image = $("<img>");
+            image.attr('src', themeImageStill);
+            image.attr('data-still', themeImageStill);
+            image.attr('data-animate', themeImageAnimated)
+            image.attr('data-state', 'still');
+            image.addClass("searchGif");
+
 
           // Appending the paragraph and image tag to the themeDiv
           themeDiv.append(p);
-          themeDiv.append(themeImage);
+          themeDiv.append(image);
 
           // Prependng the themeDiv to the HTML page in the "#gifs-appear-here" div
           $("#gifsHere").prepend(themeDiv);
         };
+        
+        
     });
+};
 
-
+$(document).on('click', '.searchGif', function() {
+    var state = $(this).attr('data-state');
+    if (state === 'still') {
+        $(this).attr('src', $(this).data('animate'));
+        $(this).attr('data-state', 'animate');
+    }else {
+        $(this).attr('src', $(this).data('still'));
+        $(this).attr('data-state', 'still');
+    }
 })
+
+$("#addTo").on("click", function(event) {
+    event.preventDefault();
+    // This line grabs the input from the textbox
+    var topic = $("#themeInput").val().trim();
+
+    // Adding movie from the textbox to our array
+    topics.push(topic);
+    
+    // Calling renderButtons which handles the processing of our movie array
+    renderButtons();
+});
+
+  // Adding a click event listener to all elements with a class of "movie-btn"
+$(document).on("click", "button", displayGifs);
+
+  // Calling the renderButtons function to display the intial buttons
+renderButtons();
