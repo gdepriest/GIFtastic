@@ -40,17 +40,19 @@ function displayGifs() {
         // Looping through each result item
         for (var i = 0; i < results.length; i++) {
 
+            
+
           // Creating and storing a div tag
           var themeDiv = $("<div>");
 
             //creating and displaying the paragraph with the rating
           var p = $("<p>").text("Rating: " + results[i].rating);
 
-          // Creating and storing an image tag
-        var themeImageStill = results[i].images.fixed_height_still.url;
-        var themeImageAnimated = results[i].images.fixed_height.url;
-
-        var image = $("<img>");
+          // Creating separate variables for still and animated image
+            var themeImageStill = results[i].images.fixed_height_still.url;
+            var themeImageAnimated = results[i].images.fixed_height.url;
+                // Creating and storing an image tag - applying attributes for animating/pausing
+            var image = $("<img>");
             image.attr('src', themeImageStill);
             image.attr('data-still', themeImageStill);
             image.attr('data-animate', themeImageAnimated)
@@ -71,6 +73,7 @@ function displayGifs() {
 };
 
 $(document).on('click', '.searchGif', function() {
+    
     var state = $(this).attr('data-state');
     if (state === 'still') {
         $(this).attr('src', $(this).data('animate'));
@@ -91,9 +94,10 @@ $("#addTo").on("click", function(event) {
     
     // Calling renderButtons which handles the processing of our movie array
     renderButtons();
+    $("#themeInput").val('');
 });
 
-  // Adding a click event listener to all elements with a class of "movie-btn"
+  // Adding a click event listener to all elements with a class of "button"
 $(document).on("click", "button", displayGifs);
 
   // Calling the renderButtons function to display the intial buttons
