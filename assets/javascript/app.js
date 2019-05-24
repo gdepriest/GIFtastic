@@ -27,6 +27,8 @@ function renderButtons() {
 function displayGifs() {
 
     var theme = $(this).attr("data-name")
+    $("#gifsHere").empty();
+    // $("#gifsHere").empty();
 
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + theme + "&api_key=ItVZg7dqEEKwfl74bw0k4pld0Nswtx4h&limit=10";
 
@@ -35,7 +37,7 @@ function displayGifs() {
         method: "GET",
     }).then(function(response) {
         console.log(response);
-        
+        // $("#gifsHere").empty();
         var results = response.data;
         // Looping through each result item
         for (var i = 0; i < results.length; i++) {
@@ -65,7 +67,7 @@ function displayGifs() {
           themeDiv.append(image);
 
           // Prependng the themeDiv to the HTML page in the "#gifs-appear-here" div
-          $("#gifsHere").prepend(themeDiv);
+          $("#gifsHere").append(themeDiv);
         };
         
         

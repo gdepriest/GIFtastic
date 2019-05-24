@@ -1,0 +1,32 @@
+button {
+    font-size: 18px;    
+    font-family: 'Coming Soon', cursive;
+    font-size: 22px;
+    background-color: goldenrod;
+    color: wheat;
+}
+
+.jumbotron {
+    font-family: 'Coming Soon', cursive;
+    font-size: 120px;
+    color: goldenrod;
+}
+
+p {
+    font-family: 'Coming Soon', cursive;
+    font-size: 16px;
+}
+
+#addTo {
+    font-family: 'Coming Soon', cursive;
+    font-size: 18px;
+    background-color: goldenrod;
+    color: wheat;
+    
+
+}
+
+form {
+    font-family: 'Coming Soon', cursive;
+    font-size: 18px;
+}
