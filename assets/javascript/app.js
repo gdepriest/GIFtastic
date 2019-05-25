@@ -37,17 +37,12 @@ function displayGifs() {
         method: "GET",
     }).then(function(response) {
         console.log(response);
-        // $("#gifsHere").empty();
         var results = response.data;
         // Looping through each result item
         for (var i = 0; i < results.length; i++) {
 
-            
-
-          // Creating and storing a div tag
           var themeDiv = $("<div>").addClass("themeDiv");
 
-            //creating and displaying the paragraph with the rating
           var p = $("<p>").text("Rating: " + results[i].rating);
 
           // Creating separate variables for still and animated image
@@ -61,10 +56,9 @@ function displayGifs() {
             image.attr('data-state', 'still');
             image.addClass("searchGif");
 
-
-          // Appending the paragraph and image tag to the themeDiv
-          themeDiv.append(p);
+          // Appending the paragraph and image tag to the themeDiv          
           themeDiv.append(image);
+          themeDiv.append(p);
 
           // Prependng the themeDiv to the HTML page in the "#gifs-appear-here" div
           $("#gifsHere").append(themeDiv);
