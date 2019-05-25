@@ -45,7 +45,7 @@ function displayGifs() {
             
 
           // Creating and storing a div tag
-          var themeDiv = $("<div>");
+          var themeDiv = $("<div>").addClass("themeDiv");
 
             //creating and displaying the paragraph with the rating
           var p = $("<p>").text("Rating: " + results[i].rating);
