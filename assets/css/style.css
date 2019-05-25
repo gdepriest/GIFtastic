@@ -75,3 +75,18 @@ form {
 #heading {
     margin: 10px 0 10px 0;
 }
+
+@media (min-width: 576px) { 
+    h1 {
+        font-size: 55px;
+    }
+ }
+
+/* // Medium devices (tablets, 768px and up)
+@media (min-width: 768px) { ... }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) { ... }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { ... } */
